@@ -3,10 +3,17 @@ import { CartContext } from "../cart-context.jsx"
 import React from "react"
 
 function ItemCard({ id, name, price, imageUrl }) {
-    const { addToCart } = useContext(CartContext)
+    const { addToCart, removeFromCart, itemsInCart } = useContext(CartContext)
 
-    function handleAddToCart() {
-        addToCart(id)
+    const isInCart = itemsInCart.some(item => item.id === id)
+
+    function handleCartClick() {
+        if (isInCart) {
+            removeFromCart(id);
+        } else {
+            addToCart(id);
+        }
+
     }
 
     return (
@@ -15,8 +22,8 @@ function ItemCard({ id, name, price, imageUrl }) {
             <h2>{name}</h2>
             <p>£{price.toFixed(2)}</p>
 
-            <button onClick={handleAddToCart}>
-                {addToCart ? 'In cart' : 'Add to cart'}
+            <button onClick={handleCartClick}>
+                {isInCart ? 'In cart' : 'Add to cart'}
             </button>
         </div>
     )

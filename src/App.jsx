@@ -5,10 +5,12 @@ import NavBar from './components/NavBar'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import CheckoutPage from './pages/CheckoutPage'
+import { CartProvider } from './cart-context'
 
 function App() {
 
   return (
+    <CartProvider>
     <div className='App'>
       <Router>
         <NavBar />
@@ -19,6 +21,7 @@ function App() {
         </Routes>
       </Router>
     </div>
+    </CartProvider>
   )
 
 
