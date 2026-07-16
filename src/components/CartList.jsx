@@ -3,13 +3,7 @@ import { CartContext } from "../cart-context";
 import ItemCard from "./ItemCard";
 
 function CartList() {
-    const { itemsInCart, itemTotal, calculateItemTotal } = useContext(CartContext)
-
-    const isInCart = itemsInCart.some(item => item.id === id)
-
-    function handleCartTotal(){
-        calculateItemTotal(id)
-    }
+    const { itemsInCart, calculateTotal } = useContext(CartContext)
 
     return (
         <>
@@ -25,9 +19,9 @@ function CartList() {
                     />
                 ))}
             </div>
-            
-            <h2>Total Price: {calculateItemTotal()}</h2>
-            
+
+            <h2>Total Price: £{calculateTotal().toFixed(2)}</h2>
+
         </>
     )
 }

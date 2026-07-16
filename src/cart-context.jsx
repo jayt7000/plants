@@ -5,7 +5,6 @@ export const CartContext = createContext()
 
 export function CartProvider({ children }) {
     const [itemsInCart, setItemsInCart] = useState([])
-    const [itemTotal, setItemTotal] = useState(0);
 
     function addToCart(itemId) {
         const item = itemsData.find((item) => item.id === itemId)
@@ -17,13 +16,14 @@ export function CartProvider({ children }) {
     }
 
     function calculateTotal(itemId) {
-        const item = itemsData.find((item) => item.id === itemId)
-        setItemTotal((prev) => prev + item.price)
+        return (
+            itemsInCart.reduce((total, item) => total + item.price, 0)
+        );
     }
+
 
     const contextValue = {
         itemsInCart,
-        itemTotal,
         addToCart,
         removeFromCart,
         calculateTotal,
