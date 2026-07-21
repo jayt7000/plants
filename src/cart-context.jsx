@@ -21,7 +21,6 @@ export function CartProvider({ children }) {
         );
     }
 
-
     const contextValue = {
         itemsInCart,
         addToCart,
